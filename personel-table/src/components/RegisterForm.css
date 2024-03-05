@@ -1,0 +1,57 @@
+.registerBox{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.registerTable{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    background-color: rgb(211, 211, 211);
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px grey;
+    left: 20px;
+    bottom: 30px;
+    font-size: 12px;
+    padding: 10px;
+}
+.registerRow p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+.registerTable div{
+    display: flex;
+    justify-content: space-between;
+}
+.registerRow{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    position: relative;
+}
+.registerRow input{
+    width: 75%;
+    height: 30px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+    padding:4px 8px;
+    font-size:12px;
+}
+#generated-id, #edit-id{
+    position: absolute;
+    left: 25%;
+}
+.black-b{
+    background-color: black;
+    color: white;
+    padding: 4px 2px;
+    margin: 4px 2px;
+    border: none;
+    cursor: pointer;
+}
