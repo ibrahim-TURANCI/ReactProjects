@@ -1,3 +1,5 @@
+@import url(https://kit.fontawesome.com/8f642f7f37.js);
+
 .tableTop{
     background-color: rgb(230, 60, 43);
     border-top-right-radius: 5px;
@@ -24,7 +26,11 @@ th, td {
     padding: 8px;
     text-align: left;
     font-size: 14px;
+    color: black;
     
+}
+.lastTd{
+    text-align: end;
 }
 
 th {
@@ -89,4 +95,83 @@ tr:hover {
 }
 p{
     color:black;
+}
+
+/*  --------*********--------- */
+
+.registerBox{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.registerTable{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 5%; */
+    margin-bottom: 7%;
+    background-color: rgb(211, 211, 211);
+    background-image: url(/src/anka.png);
+    background-repeat: no-repeat;
+    background-position-x:60px;
+    background-position-y: center;
+    background-size:15%;
+    border-radius: 5px;
+    /* box-shadow: 0px 10px 10px grey; */
+    left: 20px;
+    bottom: 30px;
+    font-size: 12px;
+    padding: 10px;
+}
+.registerRow p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+.registerTable div{
+    display: flex;
+    justify-content: space-between;
+}
+.registerRow{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    position: relative;
+}
+.registerRow input{
+    width: 75%;
+    height: 30px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+    padding:4px 8px;
+    font-size:12px;
+}
+#generated-id, #edit-id{
+    position: absolute;
+    left: 25%;
+}
+.black-b{
+    background-color: black;
+    color: white;
+    padding: 4px 2px;
+    margin: 4px 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn{
+    cursor: pointer;
+    margin:0px 5px;
+    padding:3px;
+    border-radius: 5px;
+}
+.edit-btn{
+    cursor: pointer;
+    margin:0px 5px;
+    padding:0px 3px;
+    border-radius: 5px;
 }

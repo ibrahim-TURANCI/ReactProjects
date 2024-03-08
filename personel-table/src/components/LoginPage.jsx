@@ -66,7 +66,7 @@ const LoginPage = ({ users, setLoggedInUser }) => {
                         />
                         <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4" onClick={handleLogin}>Login</a>
+                        <button class="btn mt-4" onClick={handleLogin}>Login</button>
                         <p class="mb-0 mt-4 text-center">
                         <a href="#0" class="link">Forgot your password?</a>
                         </p>
@@ -110,7 +110,7 @@ const LoginPage = ({ users, setLoggedInUser }) => {
                         />
                         <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4">submit</a>
+                        <button class="btn mt-4">submit</button>
                     </div>
                     </div>
                 </div>

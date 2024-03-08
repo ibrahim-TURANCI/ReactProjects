@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './RegisterForm.css';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onAddUser }) => {
     const [generatedId, setGeneratedId] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
@@ -20,19 +20,23 @@ const RegisterForm = () => {
     const addUser = () => {
       // Burada kullanıcı ekleme işlemleri yapılabilir
       // Örneğin, bir API'ye POST isteği gönderilebilir
-    console.log("User added:", {
+      const newUser = {
         id: generatedId,
         name: name,
         surname: surname,
         tc: tc,
         tel: tel
-    });
-      // Durumları sıfırla
+      };
+
+    onAddUser(newUser);
+      // İnputları Temizle ve ID değiştir.
     setGeneratedId('');
     setName('');
     setSurname('');
     setTc('');
     setTel('');
+    const newId = generateRandomId(); 
+    setGeneratedId(newId);
     };
     
     return (
@@ -43,7 +47,7 @@ const RegisterForm = () => {
         <div className="registerRow"><p>Soyad</p><input type="text" id="surname" placeholder="Soyadınızı Giriniz. *" value={surname} onChange={(e) => setSurname(e.target.value)} required /></div>
         <div className="registerRow"><p>T.C.</p><input type="text" inputMode="numeric" id="tc" placeholder="TC Giriniz. *" maxLength="11" value={tc} onChange={(e) => setTc(e.target.value)} required /></div>
         <div className="registerRow"><p>Telefon</p><input type="text" id="tel" placeholder="Telefon Giriniz." value={tel} onChange={(e) => setTel(e.target.value)} /></div>
-        <div className="registerRow"><p>Lütfen '*' alanları eksiksiz şekilde doldurunuz</p><button className="black-b" onClick={addUser}>Gönder</button></div>
+        <div className="registerRow"><p>Lütfen '*' alanları eksiksiz şekilde doldurunuz</p><button className="black-b" onClick={addUser}>KAYDET</button></div>
   
 </div>
     );
