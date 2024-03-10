@@ -2,34 +2,11 @@ import './Table.css';
 import RegisterForm from './RegisterForm';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-/* import { useSelector, useDispatch } from 'react-redux'; */
-/* const Table = () => {
-    const dispatch = useDispatch();
-    const users = useSelector((state) => state.user.users);
 
-    const addUser = (newUser) => {
-        // Redux'a action gönder
-        dispatch({ type: "ADD_USER", payload: newUser });
-    };
-
-    const deleteUser = async (userId) => {
-        try {
-            await axios.delete(`http://localhost:3004/users/${userId}`);
-            // Redux'a action gönder
-            dispatch({ type: "DELETE_USER", payload: userId });
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
-    }; */
 
 const Table = () => {
-    const deleteAllTasks = async () => {
-        try {
-            await axios.delete("http://localhost:3004/users");
-            setUsers([]);
-        } catch (error) {
-            console.error('Error deleting all tasks:', error);
-        }
+    const deleteAllTasks = () => {
+        setUsers([]);
     };
 
     const [users, setUsers] = useState([]);
