@@ -2,6 +2,7 @@
 
 .tableTop{
     background-color: rgb(230, 60, 43);
+    background-image: linear-gradient(to bottom right, rgb(255,16,1), rgb(254,94,0));
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     height: 80px;

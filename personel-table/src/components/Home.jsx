@@ -4,6 +4,8 @@ import './Home.css';
 
 
 const Home = ({ loggedInUser }) => {
+    const isAdmin = loggedInUser?.isAdmin || false;
+
     return (
 
         <div className="App">
@@ -16,7 +18,7 @@ const Home = ({ loggedInUser }) => {
                 </p>
             )}
                 </div>
-                <Table />
+                <Table isAdmin={isAdmin}/>
             </body>
         </div>
 

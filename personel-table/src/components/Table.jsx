@@ -2,6 +2,7 @@ import './Table.css';
 import RegisterForm from './RegisterForm';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {  useSelector } from 'react-redux';
 /* import { useSelector, useDispatch } from 'react-redux'; */
 /* const Table = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,9 @@ import axios from 'axios';
         }
     }; */
 
-const Table = () => {
+const Table = ({ isAdmin } ) => {
+    const [refresh,setRefresh] = useState(false)
+    const userRefreshes = useSelector((state) => state.user.addUser)
     const deleteAllTasks = async () => {
         try {
             await axios.delete("http://localhost:3004/users");
@@ -31,14 +34,28 @@ const Table = () => {
             console.error('Error deleting all tasks:', error);
         }
     };
-
     const [users, setUsers] = useState([]);
 
+    const addUser = async (newUser) => {
 
-    const addUser = (newUser) => {
+        try {
+            if (newUser) {
+                console.log("jsjsjs");
+                // Yeni kullanıcıyı ekleyin
+                await axios.post("http://localhost:3004/users", newUser).then((res) => {
+                })
+                setRefresh(true)
+            }
+    
 
-        // Mevcut kullanıcıları güncelle ve yeni kullanıcıyı ekle
-        setUsers(prevUsers => [...prevUsers, newUser]);
+            console.log("dfadsfasd");
+            // Tabloyu güncellemek için fetchData fonksiyonunu çağırın
+        
+       
+        } catch (error) {
+            console.error('Error adding user:', error);
+        }
+        setRefresh(false)
     };
 
 
@@ -66,33 +83,32 @@ const Table = () => {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
+        
     };
 
     useEffect(() => {
-
-        fetchData();
-
+        
+             fetchData();
+        
+       console.log("sssss");
     }, []);
-    useEffect(() => {
-        // users state'i güncellendiğinde çalışacak olan kodlar
-        // Bu durumda herhangi bir değişiklik olduğunda fetchData fonksiyonunu tekrar çağırabilirsiniz.
-        fetchData();
-    }, [users]);  // users state'i değiştiğinde çalışacak
+   // users state'i değiştiğinde çalışacak
 
 
     return (
 
         <div class="tableBox">
-            <RegisterForm onAddUser={addUser} onDeleteUser={deleteUser} />
+            {isAdmin && <RegisterForm onAddUser={addUser} onDeleteUser={deleteUser} />}
             <div class="tableTop">
                 <p>DATABASE</p>
+
+                {isAdmin && (
                 <div>
-
-
                     <input id="noDel" type="text" placeholder="ID" maxlength="7" />
                     <button class="noDel" onclick="deleteUser()">DELETE</button>
                     <button class="removeAll" onClick={() => deleteAllTasks()}>Delete All</button>
                 </div>
+                )}
                 <p class="delnote">Silmek istediğiniz verinin ID'sini giriniz</p>
             </div>
 

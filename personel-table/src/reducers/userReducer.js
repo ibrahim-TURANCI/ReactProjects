@@ -1,30 +1,22 @@
-
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     users: [],
+    adducer: false
 };
 
-const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'DELETE_USER':
-            return {
-                ...state,
-                users: state.users.filter((user) => action.payload !== user.id),
-            };
-        case 'ADD_USER':
-            return {
-                ...state,
-                users: [...state.users, action.payload],
-            };
-        case 'UPDATE_USER':
-            return {
-                ...state,
-                users: state.users.map((user) =>
-                    user.id === action.payload.id ? action.payload : user
-                ),
-            };
-        default:
-            return state;
-    }
-};
+// eslint-disable-next-line no-undef
+export const userSlice = createSlice({
+    name: 'user',
+    initialState,
+    reducers: {
+        setAdducer: (state, action) => {
+            state.adducer = action.payload;
+        },
+      
 
-export default userReducer;
+    },
+})
+
+export const {  setAdducer: setAdduser} = userSlice.actions
+
+export default userSlice.reducer

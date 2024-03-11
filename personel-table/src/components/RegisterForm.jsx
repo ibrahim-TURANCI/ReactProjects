@@ -2,7 +2,7 @@ import { useState } from "react";
 import './RegisterForm.css';
 import { useDispatch } from 'react-redux';  // useDispatch eklenmiş
 import axios from 'axios';
-
+import { setAdduser } from "../reducers/userReducer";
 const RegisterForm = () => {
   const dispatch = useDispatch();  // useDispatch hook'u eklenmiş
 
@@ -16,7 +16,6 @@ const RegisterForm = () => {
     const newId = generateRandomId();
     setGeneratedId(newId);
   };
-
   const generateRandomId = () => {
     return Math.floor(1000000 + Math.random() * 9000000);
   };
@@ -29,7 +28,9 @@ const RegisterForm = () => {
       tc: tc,
       tel: tel
     };
-
+ 
+    dispatch(setAdduser(true))
+    console.log("Deneme 12");
     if (!newUser.id) {
       alert("ID oluşturunuz.");
       return;

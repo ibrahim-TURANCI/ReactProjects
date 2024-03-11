@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const [LoginUsers] = useState([
-    { id: 1, name: 'ibrahim Turancı', email: 'admin@gmail.com', password: '123456' }, /* isAdmin */
-    { id: 2, name: 'Qwd Asc', email: 'qwdasc@gmail.com', password: 'qwdasc44' },
+    { id: 1, name: 'ibrahim Turancı', email: 'a', password: '1', isAdmin: true }, 
+    { id: 2, name: 'Qwd Asc', email: 'user@gmail.com', password: '123456',isAdmin: false },
     // Diğer kullanıcılar
     
   ]);
