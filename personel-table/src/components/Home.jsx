@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import Table from "./Table";
 import './Home.css';
 import { useDispatch } from "react-redux";
-import { setAddusers } from '../reducers/userReducer';
+import { setUsers } from '../reducers/userReducer';
+import { fetchData } from '../Services'; // Servis dosyasını içe aktar
 
 
 
@@ -10,29 +11,18 @@ const Home = ({ loggedInUser }) => {
     const isAdmin = loggedInUser?.isAdmin || false;
     const dispatch = useDispatch()
 
-    const fetchData = async () => {
-
-        try {
-            const response = await fetch("http://localhost:3004/users");
-            const data = await response.json();
-            console.log("data: ", data);
-            /*       setUserData(data); */
-            for (let i = 0; i < data.length; i++) {
-                const user = data[i];
-                dispatch(setAddusers(data))
-
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-
-    };
-
-
     useEffect(() => {
-        fetchData()
+        const getData = async () => {
+            try {
+                const data = await fetchData(); // Servisi kullan
+                dispatch(setUsers(data));
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-    }, [])
+        getData(); // fetchData fonksiyonunu çağır
+    }, [dispatch]); // dispatch bağımlılığını ekleyin
 
     return (
 

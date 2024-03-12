@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './RegisterForm.css';
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
-import { setAdducer, setAddusers } from "../reducers/userReducer";
+import { setAdducer, setUsers } from "../reducers/userReducer";
 const RegisterForm = () => {
   const dispatch = useDispatch();  // useDispatch hook'u eklenmiş
 
@@ -11,8 +11,8 @@ const RegisterForm = () => {
   const [surname, setSurname] = useState('');
   const [tc, setTc] = useState('');
   const [tel, setTel] = useState('');
-  const users  = useSelector((state) => state.user.users);
-  console.log("users : ",users);
+  const users = useSelector((state) => state.user.users);
+  console.log("users : ", users);
 
   useEffect(() => {
   }, [])
@@ -31,20 +31,20 @@ const RegisterForm = () => {
     const fetchData = async () => {
 
       try {
-          const response = await fetch("http://localhost:3004/users");
-          const data = await response.json();
-          console.log("data: ", data);
-          /*       setUserData(data); */
-          for (let i = 0; i < data.length; i++) {
-              const user = data[i];
-              dispatch(setAddusers(data))
+        const response = await fetch("http://localhost:3004/users");
+        const data = await response.json();
+        console.log("data: ", data);
+        /*       setUserData(data); */
+        for (let i = 0; i < data.length; i++) {
+          const user = data[i];
+          dispatch(setUsers(data))
 
-          }
+        }
       } catch (error) {
-          console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
       }
 
-  };
+    };
     const newUser = {
       id: generatedId,
       name: name,
@@ -52,8 +52,8 @@ const RegisterForm = () => {
       tc: tc,
       tel: tel
     };
-    console.log("users :",users);
-    console.log("newUser :",newUser.name);
+    console.log("users :", users);
+    console.log("newUser :", newUser.name);
     // dispatch(setAddusers([...users, newUser]))
     // dispatch(setAdducer(true))
     console.log("Deneme 12");

@@ -1,16 +1,14 @@
 import './Table.css';
 import RegisterForm from './RegisterForm';
 import React, { useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData, deleteUserData, deleteAllUserData } from '../Services';
+import { setUsers } from "../reducers/userReducer";
 
 const Table = ({ isAdmin }) => {
     const users = useSelector((state) => state.user.users);
-    
-    const deleteAllTasks = async () => {
-        await axios.delete("http://localhost:3004/users");
-        // setUsers([]);
-    };
+    const dispatch = useDispatch();
+
 
     const addUser = async (newUser) => {
         try {
@@ -22,43 +20,43 @@ const Table = ({ isAdmin }) => {
         }
     };
 
+    const deleteUser = async (userId) => {
+        try {
+            await deleteUserData(userId);
+            console.log(userId);
+            await fetchData();
+            // dispatch(setUsers(users.filter((user) => user.id !== userId))); // Redux'tan kullanıcıyı silmek yerine servisi kullanabiliriz
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    };
 
     /*     const deleteAll = async () => {
             const confirmed = window.confirm("Tüm kullanıcıları silmek istediğinizden emin misiniz?");
             if (!confirmed) {
                 return;
             } */
-
-    const deleteUser = async (userId) => {
+    const deleteAllTasks = async () => {
         try {
-            const numericUserId = parseInt(userId, 10);
-            await axios.delete(`http://localhost:3004/users/${numericUserId}`);
-            // setUsers((prevUsers) => prevUsers.filter((user) => user.id !== numericUserId));
+            await deleteAllUserData();
+            // dispatch(setUsers([])); // Redux'tan tüm kullanıcıları silmek yerine servisi kullanabiliriz
         } catch (error) {
-            console.error('Error deleting user:', error);
+            console.error('Error deleting all users:', error);
         }
-    };
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch("http://localhost:3004/users");
-            const data = await response.json();
-            console.log("data: ", data);
-            /*       setUserData(data); */
-
-            return data 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-
     };
 
     useEffect(() => {
+        const getData = async () => {
+            try {
+                const data = await fetchData(); // Servisi kullanarak verileri al
+                dispatch(setUsers(data)); // Redux store'u güncelle
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-        fetchData();
-
-        console.log("sssss");
-    }, []);
+        getData(); // fetchData fonksiyonunu çağır
+    }, [dispatch]);
 
 
     return (
