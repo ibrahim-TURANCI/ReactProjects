@@ -1,10 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './reducers/userReducer';
 
-const rootReducer = combineReducers({
-    user: userReducer,
+
+
+export default configureStore({
+    reducer: {
+        user: userReducer
+    }
 });
-
-const store = createStore(rootReducer);
-
-export default store;
