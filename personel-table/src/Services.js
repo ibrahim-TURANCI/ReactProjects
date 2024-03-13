@@ -21,7 +21,14 @@ export const addUserToServer = async (newUser) => {
         throw error;
     }
 };
-
+export const updateUserInServer = async (userId, updatedUserData) => {
+    try {
+        const response = await axios.put(`http://localhost:3004/users/${userId}`, updatedUserData);
+        return response.data;
+    } catch (error) {
+        throw new Error('Error updating user in server:', error);
+    }
+};
 export const deleteUserFromServer = async (userId) => {
     try {
         await axios.delete(`http://localhost:3004/users/${userId}`);
@@ -33,7 +40,7 @@ export const deleteUserFromServer = async (userId) => {
 export const deleteUserData = async (userId) => {
     try {
         await axios.delete(`http://localhost:3004/users/${userId}`);
-        await fetchData(); // Tablo yenilemek için
+        // await fetchData(); // Tablo yenilemek için
     } catch (error) {
         console.error('Error deleting user:', error);
         throw error;
@@ -43,7 +50,7 @@ export const deleteUserData = async (userId) => {
 export const deleteAllUserData = async () => {
     try {
         await axios.delete("http://localhost:3004/users");
-        await fetchData();
+        // await fetchData();
     } catch (error) {
         console.error('Error deleting all users:', error);
         throw error;
