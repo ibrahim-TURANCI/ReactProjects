@@ -6,7 +6,7 @@ import { addUserToServer, fetchData } from "../Services"; */
 
 
 const UpdateForm = ({ userData, onUpdate }) => {
-    const [id,setId] = useState(userData.id)
+    const [id, setId] = useState(userData.id)
     const [name, setName] = useState(userData.name);
     const [surname, setSurname] = useState(userData.surname);
     const [tc, setTc] = useState(userData.tc);
@@ -33,7 +33,7 @@ const UpdateForm = ({ userData, onUpdate }) => {
             <div className="registerRow"><p>Soyad</p><input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} /></div>
             <div className="registerRow"><p>T.C.</p><input type="text" value={tc} onChange={(e) => setTc(e.target.value)} /></div>
             <div className="registerRow"><p>Telefon</p><input type="text" value={tel} onChange={(e) => setTel(e.target.value)} /></div>
-            <div className="registerRow"><button onClick={handleUpdate} class="black-b">Düzenle</button></div>
+            <div className="registerRow"><button onClick={handleUpdate} className="black-b">Düzenle</button></div>
 
         </div>
     );

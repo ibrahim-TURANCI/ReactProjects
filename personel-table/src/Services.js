@@ -40,7 +40,6 @@ export const deleteUserFromServer = async (userId) => {
 export const deleteUserData = async (userId) => {
     try {
         await axios.delete(`http://localhost:3004/users/${userId}`);
-        // await fetchData(); // Tablo yenilemek için
     } catch (error) {
         console.error('Error deleting user:', error);
         throw error;
@@ -49,8 +48,8 @@ export const deleteUserData = async (userId) => {
 
 export const deleteAllUserData = async () => {
     try {
-        await axios.delete("http://localhost:3004/users");
-        // await fetchData();
+        /*   await axios.put("http://localhost:3004/users", []); */
+        await axios.delete(`http://localhost:3004/users/`);
     } catch (error) {
         console.error('Error deleting all users:', error);
         throw error;

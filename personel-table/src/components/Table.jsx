@@ -46,8 +46,14 @@ const Table = ({ isAdmin }) => {
     };
 
     const deleteAllTasks = async () => {
+        const confirmed = window.confirm("Tüm kullanıcıları silmek istediğinizden emin misiniz?");
+        if (!confirmed) {
+            return;
+        }
         try {
             await deleteAllUserData();
+            // Başarılı bir şekilde tüm kullanıcılar silindiğinde, tabloyu yeniden yükle
+            await fetchUsers();
         } catch (error) {
             console.error('Error deleting all users:', error);
         }
@@ -67,44 +73,48 @@ const Table = ({ isAdmin }) => {
     }, [dispatch]);
 
     return (
-        <div class="tableBox">
+        <div className="tableBox">
             {isAdmin && !isEditing && <RegisterForm />}
             {isAdmin && !isEditing && (
-                <div class="tableTop">
+                <div className="tableTop">
                     <p>DATABASE</p>
                     <div>
-                        <input id="noDel" type="text" placeholder="ID" maxlength="7" />
-                        <button class="noDel" onClick={deleteUser}>DELETE</button>
-                        <button class="removeAll" onClick={deleteAllTasks}>Delete All</button>
+                        <input id="noDel" type="text" placeholder="ID" maxLength="7" />
+                        <button className="noDel" onClick={deleteUser}>DELETE</button>
+                        <button className="removeAll" onClick={deleteAllTasks}>Delete All</button>
                     </div>
-                    <p class="delnote">Silmek istediğiniz verinin ID'sini giriniz</p>
+                    <p className="delnote">Silmek istediğiniz verinin ID'sini giriniz</p>
                 </div>
             )}
             {isEditing ? (
                 <UpdateForm userData={selectedUserData} onUpdate={handleUpdate} />
             ) : (
                 <table id="personelTable">
-                    <tr>
-                        <th>ID</th>
-                        <th>AD</th>
-                        <th>SOYAD</th>
-                        <th>TC</th>
-                        <th>TELEFON</th>
-                        <th></th>
-                    </tr>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.surname}</td>
-                            <td>{user.tc}</td>
-                            <td>{user.tel}</td>
-                            <td className='lastTd'>
-                                <span onClick={() => handleEdit(user.id, user)}><i class="edit-btn fa-regular fa-pen-to-square"></i></span>
-                                <span onClick={() => deleteUser(user.id)}><i class="delete-btn fa-regular fa-trash-can"></i></span>
-                            </td>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>AD</th>
+                            <th>SOYAD</th>
+                            <th>TC</th>
+                            <th>TELEFON</th>
+                            <th></th>
                         </tr>
-                    ))}
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.surname}</td>
+                                <td>{user.tc}</td>
+                                <td>{user.tel}</td>
+                                <td className='lastTd'>
+                                    <span onClick={() => handleEdit(user.id, user)}><i className="edit-btn fa-regular fa-pen-to-square"></i></span>
+                                    <span onClick={() => deleteUser(user.id)}><i className="delete-btn fa-regular fa-trash-can"></i></span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             )}
         </div>
