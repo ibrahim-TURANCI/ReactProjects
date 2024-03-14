@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './RegisterForm.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setUsers } from "../reducers/userReducer";
-import { addUserToServer, fetchData } from "../Services";
+import { addUserToServer, fetchData } from "../Services/HttpServices";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();

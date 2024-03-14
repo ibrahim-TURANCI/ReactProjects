@@ -3,13 +3,14 @@ import RegisterForm from './RegisterForm';
 import UpdateForm from './UpdateForm';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchData, deleteUserData, deleteAllUserData, deleteUserFromServer, updateUserInServer } from '../Services';
+import { fetchData, deleteUserById, deleteUserFromServer, updateUserInServer } from '../Services/HttpServices';
 import { setUsers } from "../reducers/userReducer";
 
 const Table = ({ isAdmin }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(null);
     const [selectedUserData, setSelectedUserData] = useState(null);
+    const [inputValue, setInputValue] = useState('');
 
     const users = useSelector((state) => state.user.users);
     const dispatch = useDispatch();
@@ -19,7 +20,9 @@ const Table = ({ isAdmin }) => {
         setSelectedUserData(userData);
         setIsEditing(true);
     };
-
+    const handleChange = (event) => {
+        setInputValue(event.target.value);
+    };
     const handleUpdate = async (updatedUserData) => {
         try {
             await updateUserInServer(updatedUserData.id, updatedUserData);
@@ -45,19 +48,42 @@ const Table = ({ isAdmin }) => {
         }
     };
 
-    const deleteAllTasks = async () => {
+    const handleDelete = () => {
+        deleteUserById(inputValue)
+            .then((response) => {
+                console.log(response.message);
+                setInputValue('');
+                fetchUsers();
+            })
+            .catch((error) => {
+                alert("ID Bulunamadı.");
+            });
+
+
+    };
+
+    const deleteAllUser = async () => {
         const confirmed = window.confirm("Tüm kullanıcıları silmek istediğinizden emin misiniz?");
         if (!confirmed) {
             return;
         }
+
         try {
-            await deleteAllUserData();
-            // Başarılı bir şekilde tüm kullanıcılar silindiğinde, tabloyu yeniden yükle
+            const users = await fetchData(); // Tüm kullanıcıları getir
+
+            for (let index = 0; index < users.length; index++) {
+                const user = users[index];
+                await deleteUserFromServer(user.id); // Her bir kullanıcıyı sil
+            }
+            console.log("Tüm userlar silindi")
             await fetchUsers();
+            console.log("Yeni data alındı")
+
         } catch (error) {
-            console.error('Error deleting all users:', error);
+            console.log("Hata", error)
         }
-    };
+
+    }
 
     const fetchUsers = async () => {
         try {
@@ -79,9 +105,9 @@ const Table = ({ isAdmin }) => {
                 <div className="tableTop">
                     <p>DATABASE</p>
                     <div>
-                        <input id="noDel" type="text" placeholder="ID" maxLength="7" />
-                        <button className="noDel" onClick={deleteUser}>DELETE</button>
-                        <button className="removeAll" onClick={deleteAllTasks}>Delete All</button>
+                        <input id="noDel" type="text" placeholder="ID" maxLength="7" value={inputValue} onChange={handleChange} />
+                        <button className="noDel" onClick={handleDelete}>DELETE</button>
+                        <button className="removeAll" onClick={deleteAllUser}>Delete All</button>
                     </div>
                     <p className="delnote">Silmek istediğiniz verinin ID'sini giriniz</p>
                 </div>

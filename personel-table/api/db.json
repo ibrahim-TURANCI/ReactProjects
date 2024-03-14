@@ -1,46 +1,18 @@
 {
   "users": [
     {
-      "id": "8078546",
-      "name": "ibrahim",
-      "surname": "Turancı",
-      "tc": "34032402304",
-      "tel": "5353535324"
+      "id": "4912499",
+      "name": "1",
+      "surname": "1",
+      "tc": "1",
+      "tel": "1"
     },
     {
-      "id": "1620292",
-      "name": "ebubekir",
-      "surname": "asdsad",
-      "tc": "asd",
-      "tel": "asddsa"
-    },
-    {
-      "id": "8561787",
-      "name": "Test",
-      "surname": "deneme",
-      "tc": "23232",
-      "tel": "23233"
-    },
-    {
-      "id": "8815328",
-      "name": "Edit",
-      "surname": "by",
-      "tc": "32432432",
-      "tel": "32323"
-    },
-    {
-      "id": "7100064",
-      "name": "Hakan",
-      "surname": "zzzzzz",
-      "tc": "2332",
-      "tel": "23232332"
-    },
-    {
-      "id": "2908180",
-      "name": "New",
-      "surname": "User",
-      "tc": "3434324",
-      "tel": "434"
+      "id": "2689167",
+      "name": "2",
+      "surname": "2",
+      "tc": "2",
+      "tel": "2"
     }
   ]
 }

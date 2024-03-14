@@ -3,13 +3,15 @@ import Table from "./Table";
 import './Home.css';
 import { useDispatch } from "react-redux";
 import { setUsers } from '../reducers/userReducer';
-import { fetchData } from '../Services'; // Servis dosyasını içe aktar
+import { fetchData } from '../Services/HttpServices'; // Servis dosyasını içe aktar
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Home = ({ loggedInUser }) => {
     const isAdmin = loggedInUser?.isAdmin || false;
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
@@ -24,6 +26,14 @@ const Home = ({ loggedInUser }) => {
         getData(); // fetchData fonksiyonunu çağır
     }, [dispatch]); // dispatch bağımlılığını ekleyin
 
+    // Çıkış İşlemi
+    const handleLogout = () => {
+        // localStorage'dan kullanıcıyı temizle
+        localStorage.removeItem('loggedInUser');
+        // Login sayfasına yönlendirme
+        navigate('/login');
+    };
+
     return (
 
         <div className="App">
@@ -32,7 +42,10 @@ const Home = ({ loggedInUser }) => {
             <div className="header"><img src="https://ankageo.com/wp-content/uploads/2021/02/katman-2@2x.png" alt="AnkaGeo" />
                 {loggedInUser && (
                     <p>
-                        Logged in as: {loggedInUser.name} ({loggedInUser.email})
+                        Logged : {loggedInUser.name} ({loggedInUser.email}) ---- Log Out 
+                        <span className="logout-icon" onClick={handleLogout}>
+                            <i className="fa-solid fa-right-from-bracket"></i>
+                        </span>
                     </p>
                 )}
             </div>

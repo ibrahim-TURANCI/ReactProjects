@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { SessionManagement } from '../src/Services/AuthService';
 
 const App = () => {
+  // Önceki oturum bilgilerini localStorage'dan al
+  const savedUser = localStorage.getItem('loggedInUser');
+  const initialUser = savedUser ? JSON.parse(savedUser) : null;
+
   const [LoginUsers] = useState([
-    { id: 1, name: 'ibrahim Turancı', email: 'a', password: '1', isAdmin: true }, 
-    { id: 2, name: 'Qwd Asc', email: 'user@gmail.com', password: '123456',isAdmin: false },
+    { id: 1, name: 'Admin', email: 'a', password: '1', isAdmin: true }, 
+    { id: 2, name: 'User', email: 'u', password: '1', isAdmin: false },
     // Diğer kullanıcılar
-    
   ]);
 
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(initialUser);
+
+  // Oturum bilgilerini localStorage'e kaydet
+  useEffect(() => {
+    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    SessionManagement();
+  }, [loggedInUser]);
 
   return (
     <Router>

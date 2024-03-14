@@ -37,9 +37,11 @@ export const deleteUserFromServer = async (userId) => {
         throw error;
     }
 };
-export const deleteUserData = async (userId) => {
+
+export const deleteUserById = async (userId) => {
     try {
         await axios.delete(`http://localhost:3004/users/${userId}`);
+        return { success: true, message: 'User deleted successfully' };
     } catch (error) {
         console.error('Error deleting user:', error);
         throw error;
@@ -49,7 +51,7 @@ export const deleteUserData = async (userId) => {
 export const deleteAllUserData = async () => {
     try {
         /*   await axios.put("http://localhost:3004/users", []); */
-        await axios.delete(`http://localhost:3004/users/`);
+        await axios.put(`http://localhost:3004/users`, []);
     } catch (error) {
         console.error('Error deleting all users:', error);
         throw error;
