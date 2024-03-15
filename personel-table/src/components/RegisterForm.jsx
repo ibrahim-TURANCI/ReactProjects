@@ -13,10 +13,9 @@ const RegisterForm = () => {
   const [tel, setTel] = useState('');
   const users = useSelector((state) => state.user.users);
 
-
   const fetchUsers = async () => {
     try {
-      const data = await fetchData(); // fetchData fonksiyonunu kullan
+      const data = await fetchData(); // servis
       dispatch(setUsers(data));
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -24,7 +23,7 @@ const RegisterForm = () => {
   };
   const addUser = async (newUser) => {
     try {
-      const addedUser = await addUserToServer(newUser); // addUserToServer fonksiyonunu kullan
+      const addedUser = await addUserToServer(newUser); // servis
       await fetchUsers();
       return addedUser;
     } catch (error) {
@@ -32,13 +31,11 @@ const RegisterForm = () => {
     }
   };
 
-
   useEffect(() => {
     const generateUserId = () => {
       const newId = generateRandomId();
       setGeneratedId(newId);
     };
-
     generateUserId();
   }, []);
 

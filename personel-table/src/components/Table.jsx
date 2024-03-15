@@ -20,9 +20,11 @@ const Table = ({ isAdmin }) => {
         setSelectedUserData(userData);
         setIsEditing(true);
     };
+
     const handleChange = (event) => {
         setInputValue(event.target.value);
     };
+
     const handleUpdate = async (updatedUserData) => {
         try {
             await updateUserInServer(updatedUserData.id, updatedUserData);
@@ -58,8 +60,6 @@ const Table = ({ isAdmin }) => {
             .catch((error) => {
                 alert("ID Bulunamadı.");
             });
-
-
     };
 
     const deleteAllUser = async () => {
@@ -67,10 +67,8 @@ const Table = ({ isAdmin }) => {
         if (!confirmed) {
             return;
         }
-
         try {
             const users = await fetchData(); // Tüm kullanıcıları getir
-
             for (let index = 0; index < users.length; index++) {
                 const user = users[index];
                 await deleteUserFromServer(user.id); // Her bir kullanıcıyı sil
@@ -78,11 +76,9 @@ const Table = ({ isAdmin }) => {
             console.log("Tüm userlar silindi")
             await fetchUsers();
             console.log("Yeni data alındı")
-
         } catch (error) {
             console.log("Hata", error)
         }
-
     }
 
     const fetchUsers = async () => {

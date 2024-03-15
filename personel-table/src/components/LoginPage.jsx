@@ -10,7 +10,6 @@ const LoginPage = ({ users, setLoggedInUser }) => {
 
     const handleLogin = () => {
         const foundUser = users.find(user => user.email === email && user.password === password);
-
         if (foundUser) {
             setLoggedInUser(foundUser);
             navigate('/home');
@@ -121,7 +120,6 @@ const LoginPage = ({ users, setLoggedInUser }) => {
                 </div>
             </div>
         </div>
-
     );
 };
 

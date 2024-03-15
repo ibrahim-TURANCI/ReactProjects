@@ -31,7 +31,7 @@ const UpdateForm = ({ userData, onUpdate }) => {
             <div className="registerRow"><p>ID</p><p id="generated-id">{id}</p></div>
             <div className="registerRow"><p>Ad</p><input type="text" value={name} onChange={(e) => setName(e.target.value)} /></div>
             <div className="registerRow"><p>Soyad</p><input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} /></div>
-            <div className="registerRow"><p>T.C.</p><input type="text" value={tc} onChange={(e) => setTc(e.target.value)} /></div>
+            <div className="registerRow"><p>T.C.</p><input type="text" maxLength="11" value={tc} onChange={(e) => setTc(e.target.value)} /></div>
             <div className="registerRow"><p>Telefon</p><input type="text" value={tel} onChange={(e) => setTel(e.target.value)} /></div>
             <div className="registerRow"><button onClick={handleUpdate} className="black-b">Düzenle</button></div>
 

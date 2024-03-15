@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telefon Numarası Doğrulama</title>
+<style>
+    /* CSS ile input alanını istediğiniz gibi stilize edebilirsiniz */
+    .formTable{
+      display: flex;
+      align-items: center;
+      width: 400px;
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg);
+      background-color: black;
+      height: 250px;
+    }
+    form label {
+      padding-left: 15px;
+      padding-right: 20px;
+      color:white;
+    }
+    input {
+        padding: 10px;
+        margin-bottom: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        
+    }
+    /* Geçersiz durum için simge */
+    form{
+      align-items: center;
+    }
+input:invalid + span::after {
+  position: absolute;
+content: "✖";
+padding-left: px;
+padding-top: 10px;
+  color: #8b0000; /* Kırmızı renk */
+}
+
+/* Geçerli durum için simge */
+input:valid + span::after {
+position: absolute;
+content: "✓";
+padding-left: 5px;
+padding-top: 10px;
+  color: #009000; /* Yeşil renk */
+}
+</style>
+</head>
+<body>
+  <div class="formTable">
+<form action="">
+  <label for="fname">Name :</label><input type="text"required><span></span><br>
+  <label for="fname">Surname :</label><input type="text"required><span></span><br>
+  <label for="fname">Tc :</label><input type="text"inputMode="numeric"maxLength="11"pattern="[0-9]{11}" required><span></span><br>
+  <label for="fname">Tel :</label><input type="tel" id="phone" placeholder="Telefon numaranızı girin">
+<span></span>
+</div>
+</form>
+<script>
+    // JavaScript ile input alanındaki değişiklikleri izleyin
+    const phoneInput = document.getElementById('phone');
+
+    phoneInput.addEventListener('input', function() {
+        const regexPattern = /^(?:[0\s]?[\s]?)(?:[(]?)(?:5)(?:[0-9]{2})(?:[)]?)(?:[\s]?)(?:[0-9]{3})(?:[\s]?)(?:[0-9]{2})(?:[\s]?)(?:[0-9]{2})$/g;
+        const inputValue = phoneInput.value;
+
+        if (regexPattern.test(inputValue)) {
+            phoneInput.setCustomValidity('');
+        } else {
+            phoneInput.setCustomValidity('Geçerli bir telefon numarası girin.');
+        }
+    });
+    const inputs = document.querySelectorAll('input');
+
+inputs.forEach(input => {
+    input.addEventListener('input', function() {
+        const inputValue = this.value;
+
+        if (this.validity.valid) {
+            this.nextElementSibling.textContent = "✓";
+        } else {
+            this.nextElementSibling.textContent = "✖";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
