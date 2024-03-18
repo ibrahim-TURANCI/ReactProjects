@@ -131,8 +131,13 @@ const Table = ({ isAdmin }) => {
                                 <td>{user.tc}</td>
                                 <td>{user.tel}</td>
                                 <td className='lastTd'>
-                                    <span onClick={() => handleEdit(user.id, user)}><i className="edit-btn fa-regular fa-pen-to-square"></i></span>
-                                    <span onClick={() => deleteUser(user.id)}><i className="delete-btn fa-regular fa-trash-can"></i></span>
+                                    {
+                                        isAdmin && 
+                                        <>
+                                            <span onClick={() => handleEdit(user.id, user)}><i className="edit-btn fa-regular fa-pen-to-square"></i></span>
+                                            <span onClick={() => deleteUser(user.id)}><i className="delete-btn fa-regular fa-trash-can"></i></span>
+                                        </>
+                                    }
                                 </td>
                             </tr>
                         ))}

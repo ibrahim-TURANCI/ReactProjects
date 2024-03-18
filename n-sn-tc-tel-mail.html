@@ -3,16 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Telefon Numarası Doğrulama</title>
+<title>Tel No</title>
 <style>
     /* CSS ile input alanını istediğiniz gibi stilize edebilirsiniz */
+    body{
+      display: flex;
+      justify-content: center;
+    }
+    
+    form div{
+      display: flex;
+    justify-content: flex-end;
+    }
+    form div label{
+      display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    }
     .formTable{
       display: flex;
       align-items: center;
-      width: 400px;
+      width: 380px;
       background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg);
-      background-color: black;
+      background-color: rgb(0, 6, 59);
       height: 250px;
+      border-radius: 5px;
     }
     form label {
       padding-left: 15px;
@@ -35,7 +50,7 @@
 input:invalid + span::after {
   position: absolute;
 content: "✖";
-padding-left: px;
+padding-left: 5px;
 padding-top: 10px;
   color: #8b0000; /* Kırmızı renk */
 }
@@ -61,13 +76,13 @@ input:focus:invalid {
 <body>
   <div class="formTable">
 <form action="">
-  <label for="fname">Name :</label><input type="text"required><span></span><br>
-  <label for="fname">Surname :</label><input type="text"required><span></span><br>
-  <label for="fname">Tc :</label><input type="text"inputMode="numeric"maxLength="11"pattern="[0-9]{11}" required><span></span><br>
-  <label for="fname">Tel :</label><input type="tel" id="phone" placeholder="Telefon numaranızı girin">
-<span></span>
-</div>
+  <div><label for="fname">Name :</label><input type="text"><span></span><br></div>
+  <div><label for="fname">Surname :</label><input type="text"><span></span><br></div>
+  <div><label for="fname">Tc :</label><input type="text"inputMode="numeric"maxLength="11"pattern="[0-9]{11}" ><span></span><br></div>
+  <div><label for="fname">Tel :</label><input type="tel" id="phone"maxLength="15" placeholder="Telefon numaranızı girin">
+<span></span></div>
 </form>
+</div>
 <script>
     // JavaScript ile input alanındaki değişiklikleri izleyin
     const phoneInput = document.getElementById('phone');
@@ -82,19 +97,7 @@ input:focus:invalid {
             phoneInput.setCustomValidity('Geçerli bir telefon numarası girin.');
         }
     });
-    const inputs = document.querySelectorAll('input');
 
-inputs.forEach(input => {
-    input.addEventListener('input', function() {
-        const inputValue = this.value;
-
-        if (this.validity.valid) {
-            this.nextElementSibling.textContent = "✓";
-        } else {
-            this.nextElementSibling.textContent = "✖";
-        }
-    });
-});
 </script>
 
 </body>
