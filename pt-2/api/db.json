@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "6662319",
+      "name": "İbrahim ",
+      "surname": "Turancı",
+      "tc": "42043202340",
+      "mail": "ibrahim.turanci@gmail.com",
+      "tel": "435345543345",
+      "isAdmin": false
+    },
+    {
+      "id": "8510857",
+      "name": "Deneme",
+      "surname": "Yap",
+      "tc": "40630340542",
+      "mail": "admin@gmail.com",
+      "tel": "054334433434",
+      "isAdmin": true
+    },
+    {
+      "id": "2881482",
+      "name": "agasdvc",
+      "surname": "sdaewq",
+      "tc": "543345",
+      "mail": "a",
+      "tel": "234324",
+      "isAdmin": false
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+@import url(https://kit.fontawesome.com/8f642f7f37.js);
+
+.tableTop{
+    background-color: rgb(230, 60, 43);
+    background-image: linear-gradient(to bottom right, rgb(255,16,1), rgb(254,94,0));
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    height: 80px;
+}
+.tableTop div{
+    display: flex;
+    justify-content: flex-end;
+}
+.tableBox{
+    width: 94%; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+    padding: 20px;
+}
+#personelTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border-bottom: 0px solid rgb(233, 231, 232);
+    padding: 4px;
+    text-align: left;
+    font-size: 14px;
+    color: black;
+    
+}
+
+.tdCenter{
+    text-align: center;
+}
+.lastTd{
+    text-align: end;
+}
+
+th {
+    background-color: rgb(233, 231, 232);
+    width: 14,3%;
+    color:black;
+
+}
+tr:nth-child(n+1){
+    background-color:white;
+}
+tr:hover {
+    background-color: #f5f5f5;
+}
+.tableTop > p:first-child{
+    float: left;
+    color: white;
+    padding: 8px 8px;
+    font-size: 14px;
+    font-family: system-ui;
+}
+.delnote{
+    font-size: 11px;
+    color: white;
+    width: 99%;
+    text-align: right;
+    padding-right: 13px;
+    padding-top: 3px;
+}
+.removeAll{
+    cursor: pointer;
+    height: 30px;
+    background-color: rgb(94, 96, 95);
+    color: white;
+    margin-top: 8px;
+    padding:4px 2px;
+    font-size:12px;
+    border: solid 2px black;
+    float: inline-end;
+    margin-right: 20px;
+
+}
+#noDel{
+    margin-top: 8px;
+    width: 20%;
+    height: 30px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    text-align: left;
+    padding:4px 8px;
+    font-size:12px;
+    border: none;
+}
+.noDel{
+    background-color: black;
+    color: white;
+    padding: 4px 2px;
+    margin-top: 8px;
+    cursor: pointer;
+    height: 30px;
+    border: none;
+}
+p{
+    color:black;
+}
+
+/*  --------*********--------- */
+
+.registerBox{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.registerTable{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 5%; */
+    margin-bottom: 7%;
+    background-color: rgb(211, 211, 211);
+    background-image: url(/src/anka.png);
+    background-repeat: no-repeat;
+    background-position-x:60px;
+    background-position-y: center;
+    background-size:14%;
+    border-radius: 5px;
+    /* box-shadow: 0px 10px 10px grey; */
+    left: 20px;
+    bottom: 30px;
+    font-size: 12px;
+    padding: 10px;
+}
+.registerRow p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+.registerTable div{
+    display: flex;
+    justify-content: space-between;
+}
+.registerRow{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    position: relative;
+}
+.registerRow input{
+    width: 75%;
+    height: 30px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+    padding:4px 8px;
+    font-size:12px;
+}
+#generated-id, #edit-id{
+    position: absolute;
+    left: 25%;
+}
+.black-b{
+    background-color: black;
+    color: white;
+    padding: 4px 2px;
+    margin: 4px 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn{
+    cursor: pointer;
+    margin:0px 5px;
+    padding:3px;
+    border-radius: 5px;
+}
+.edit-btn{
+    cursor: pointer;
+    margin:0px 5px;
+    padding:0px 3px;
+    border-radius: 5px;
+}
